@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @font-face{
   font-family: Minecraft;/* Гарнитура шрифта */
     src: url(fonts/minecraft-ten-font-cyrillic.ttf); /* Путь к файлу со шрифтом */
@@ -8,12 +9,17 @@
   --c-bg-1: 28, 27, 28;
   --c-bg-2: 5, 5, 5;
   --c-bg-shadow: 17, 16, 16;
+  --с-card: 38, 36, 35;
+  --c-card-shadow-1: 61, 57, 56;
+  --c-card-shadow-2: 0, 0, 0;
 
   --c-white: 255, 255, 255;
   --c-pink: 252, 93, 217;
   --c-yellow: 255, 217, 83, 1;
   --c-yellow-shadow: 157,111,23;
-  --f-minecraft: Minecraft, san-serif;
+
+  --f-Minecraft: "Minecraft", san-serif;
+  --f-Noto-Sans: "Noto Sans", sans-serif;
 
   /* --c-pink: 250, 0, 78; */
   --c-pink-hover: 251, 166, 234;
@@ -28,7 +34,7 @@ html{
 body {
   margin: 0;
   background: linear-gradient(180deg, #1C1B1C 0%, #050505 100%);
-  min-height: 100%;
+  /* min-height: 100%; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue','Century Gothic'
     sans-serif;
