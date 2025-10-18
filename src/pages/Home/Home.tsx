@@ -1,19 +1,12 @@
 import style from './Home.module.sass';
-import Footer from "../../UI/Footer/Footer";
-import Header from "../../UI/Header/Header";
-import { Container } from 'react-bootstrap';
-
+import Default_layout from '../../layouts/Default/Default';
+import ProductsList from '../../UI/ProductsList/ProductsList';
 export default function Home(){
     
     return(
-        <>
-            <div className={style.wrap}>
-                <Header />
-                <Container>
-                    <h1 className={style.title}>Покупай коины</h1>
-                </Container>
-            </div>
-            <Footer/>
-        </>
+        <Default_layout>
+            <h1 className={style.title}>Добро пожаловать на сайт сервера "Эндерити" </h1>
+            <ProductsList/>
+        </Default_layout>     
     );
 }

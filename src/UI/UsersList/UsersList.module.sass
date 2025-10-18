@@ -1,0 +1,52 @@
+.skeleton
+    justify-content: center
+    & .card
+        &__icon
+            // background: #a00
+            margin: 21.5px 0
+            width: 50px
+            height: 50px
+            border-width: 10px
+            // border-radius: 0
+            animation: 1s linear infinite var(--bs-spinner-animation-name)
+.card
+    width: 100%
+    height: 253px
+    padding: 1rem
+    display: flex
+    text-align: center
+    flex-direction: column
+    justify-content: space-between
+    &__icon
+        height: 93px
+        width: 110px
+    &__count
+        position: relative
+        min-height: 80px
+        color: rgb(var(--c-white))
+        font-family: var(--f-Minecraft)
+        font-size: 2.2rem
+        box-shadow: 0 2px 0 0 var(--c-card-shadow-2)
+        border-bottom: 2px solid rgb(var(--c-card-shadow-2), 0.2)
+        & span
+            display: inline-block
+            position: absolute
+            left: 15%
+            right: 15%
+            bottom: 1rem
+            font-family: var(--f-Noto-Sans)
+            font-size: 1.3rem
+            background: rgb(var(--c-bg-1))
+    &__price
+        font-size: 2.2rem
+        font-family: var(--f-Noto-Sans)
+        font-weight: 500
+        color: rgb(var(--c-white))
+    &__wrap
+        background: rgb(var(--с-card))
+        margin: 2rem 1rem
+        transform: translateX(5px)
+        border-top: 4px solid rgb(var(--c-card-shadow-1))
+        border-right: 4px solid rgb(var(--c-card-shadow-1))
+        border-bottom: 4px solid rgb(var(--c-card-shadow-2))
+        border-left: 4px solid rgb(var(--c-card-shadow-2))

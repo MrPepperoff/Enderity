@@ -1,105 +1,165 @@
 import style from './Shop.module.sass';
-import Footer from "../../UI/Footer/Footer";
-import Header from "../../UI/Header/Header";
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row, Spinner } from 'react-bootstrap';
+import coinIcon from './coin.svg';
+import searchIcon from './searchIcon.svg';
+import Default_layout from '../../layouts/Default/Default';
+import { useEffect, useState } from 'react';
+import { Product, productService } from '../../services';
+
 
 export default function Shop(){
-    const coins =[
-        {
-            id: 1,
-            image: 'coin_1.png',
-            count:  100,
-            bonus: null,
-            price: 99
-        },
-        {
-            id: 2,
-            image: 'coin_1.png',
-            count:  199,
-            bonus: 20,
-            price: 179
-        },
-        {
-            id: 3,
-            image: 'coin_1.png',
-            count: 299,
-            bonus: 20,
-            price: 279
-        },
-        {
-            id: 4,
-            image: 'coin_1.png',
-            count:  499,
-            bonus: 50,
-            price: 449
-        },
-        {
-            id: 5,
-            image: 'coin_1.png',
-            count:  799,
-            bonus: 50,
-            price: 749
-        },
-        {
-            id: 6,
-            image: 'coin_1.png',
-            count:  999,
-            bonus: 100,
-            price: 899
-        },
-        {
-            id: 7,
-            image: 'coin_1.png',
-            count:  1999,
-            bonus: 200,
-            price: 1799
-        },
-        {
-            id: 8,
-            image: 'coin_1.png',
-            count:  4999,
-            bonus: 300,
-            price: 4690
-        },
-        {
-            id: 9,
-            image: 'coin_1.png',
-            count:  9999,
-            bonus: 500,
-            price: 9490
-        },
-    ]
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string>('');
+
+    useEffect(() => {
+        loadCategoryStats();
+    }, []);
+
+    const loadCategoryStats = async () => {
+        try {
+        setLoading(true);
+        
+        setError('');
+        
+        // console.log('🔄 Загружаем статистику серверов...');
+        const productsData = await productService.getProductsByServer(115859);
+        setProducts(productsData);
+
+        } catch (err: any) {
+        console.error('❌ Ошибка загрузки:', err);
+        setError(err.message);
+        } finally {
+        setTimeout(()=>{setLoading(false);}, 1500);
+        
+        }
+    };
+
     return(
-<>
-            <div className={style.wrap}>
-                <Header />
-                <Container>
-                    <div className={style.wrap__top}>
-                        <h1 className={style.title}>Покупай майнкоины</h1>
-                        <p className={style.text}>Майнкоины — это виртуальная валюта Minecraft. С ее помощью можно преобразовать миры, отправиться на поиски эпичных сюжетных приключений, придать уникальный вид своему персонажу и сделать еще много всего интересного.</p>
-                    </div>
-                    <Row className={style.wrap__row}>
-                        {coins.map((coin)=>
-                        <Col xs={2} key={coin.id} className={style.card__wrap}>
+        <Default_layout>
+                <div className={style.wrap__top}>
+                    <h1 className={style.title}>Покупай коины</h1>
+                    <p className={style.text}>Коины — это виртуальная валюта Эндерити. С ее помощью можно преобразовать миры,отправиться на поиски эпичных сюжетных приключений, придать уникальный вид своему персонажу и сделать еще много всего интересного.</p>
+                </div>
+                {(loading)?
+                <Row className={`${style.wrap__row} ${style.skeleton}`}>
+                    {[1,2,3,4,5,6,7,8,9].map(item=>
+                        <Col xs={2} className={style.card__wrap} key={item}>
                             <div className={style.card}>
-                                <div>
-                                    <img src={`images/${coin.image}`} alt="" />
+                                <div className={style.card__icon__wrap}>
+                                    
                                 </div>
                                 <div className={style.card__count}>
-                                    {coin.count}
-                                    {(coin.bonus)? <span>+ O {coin.bonus} Бонус!</span>: ''}
+                                    <div className={style.card__title}>
+                                        
+                                    </div>
+                                    <div className={style.card__promo}>
+                                        
+                                    </div>
+                                </div>
+                                <div className={style.card__price}>
+                                    
+                                </div>
+                            </div>
+                        </Col>
+                    )}
+                </Row>
+                :
+                (error)?
+                    
+                <Row className={`${style.wrap__row} ${style.skeleton} ${style.error}`}>
+                    <div className={style.skeleton_error}>
+                        <h2>Ошибка загрузки: {error}</h2>
+                    </div>
+                    {[1,2,3,4,5,6,7,8,9].map(item=>
+                        <Col xs={2} className={style.card__wrap } key={item}>
+                            <div className={style.card}>
+                                <div className={style.card__icon__wrap}>
+                                    ✖️
+                                </div>
+                                <div className={style.card__count}>
+                                    <div className={style.card__title}>
+                                        
+                                    </div>
+                                    <div className={style.card__promo}>
+                                        
+                                    </div>
+                                </div>
+                                <div className={style.card__price}>
+                                    
+                                </div>
+                            </div>
+                        </Col>
+                    )}
+                </Row>
+                :
+                <Row className={style.wrap__row}>
+                    {products.map((coin)=>
+                        (coin.category_id == 92595)?
+                        <Col xs={2} key={coin.id} className={style.card__wrap}>
+                            <div className={style.card}>
+                                <div className={style.card__icon__wrap}>
+                                    <img className={style.card__icon} src={coin.image} alt={`${coin.name}`}/>
+                                </div>
+                                <div className={style.card__count}>
+                                    <div className={style.card__title}>
+                                        {coin.name}
+                                    </div>
+                                    <div className={style.card__promo}>
+                                        {(coin.price != Number(coin.name))? <span><img src={coinIcon} alt="coin" />  {Number(coin.name) - coin.price} Бонус!</span>: ''}
+                                    </div>
                                 </div>
                                 <div className={style.card__price}>
                                     {coin.price} &#8381;
                                 </div>
                             </div>
                         </Col>
-                        )}
-                        
-                    </Row>
-                </Container>
-            </div>
-            <Footer/>
-        </>
+                    :'')}
+                </Row>
+                }
+                
+                <div className={style.payBtn__wrap}>
+                    <button type='button' className={style.payBtn}>В корзину</button>    
+                </div>
+                
+                <div className={style.wrap__top}>
+                    <h1 className={style.title}>За покупками в магазин</h1>
+                    <p className={style.text}>Улучшите свой игровой процесс с помощью загружаемого контента Minecraft. Покупайте уникальные карты, скины и наборы текстур от ваших любимых авторов из сообщества Minecraft!</p>
+                </div>
+                <div className={style.search}>
+                    <input type="text" placeholder='Поиск' className={style.search__input}/>
+                    <button type='button' className={style.search__btn}><img src={searchIcon} alt="search"/></button>
+                </div>
+                <div className={style.category}>
+                    <ul className={style.category__list}>
+                        <li><button type="button">Все</button></li>
+                        <li><button type="button">Броня</button></li>
+                        <li><button type="button">Блоки</button></li>
+                        <li><button type="button">Инструменты</button></li>
+                        <li><button type="button">Ранги</button></li>
+                    </ul>
+                </div>
+                <Row className={style.wrap__row}>
+                    {products.map((coin)=>
+                        (coin.category_id != 92595)?
+                        <Col xs={2} key={coin.id} className={style.card__wrap}>
+                            <div className={style.card}>
+                                <div>
+                                    <img className={style.card__icon} src={coin.image} alt={`${coin.name}`}/>
+                                </div>
+                                <div className={style.card__count}>
+                                    <div>
+                                        {coin.name}
+                                    </div>
+                                    
+                                </div>
+                                <div className={style.card__price}>
+                                    {coin.price} &#8381;
+                                </div>
+                            </div>
+                        </Col>
+                    :'')}
+                </Row>
+        </Default_layout>
     );
 }

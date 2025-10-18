@@ -1,15 +1,10 @@
-import style from './Rules.module.sass';
-import Footer from "../../UI/Footer/Footer";
-import Header from "../../UI/Header/Header";
+import Default_layout from '../../layouts/Default/Default';
 
 export default function Rules(){
     
     return(
-        <>
-            <div className={style.wrap}>
-                <Header />
-            </div>
-            <Footer/>
-        </>
+        <Default_layout>
+            Rules
+        </Default_layout>
     );
 }

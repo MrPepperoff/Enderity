@@ -11,6 +11,7 @@ export default function Menu(){
                     <li className={style.item}><NavLink className={({ isActive }) => (isActive ? style.link+' '+style.link_active : style.link)}  to='/' end>Главная</NavLink></li>
                     <li className={style.item}><NavLink className={({ isActive }) => (isActive ? style.link+' '+style.link_active : style.link)} to='/shop'>Магазин</NavLink></li>
                     <li className={style.item}><NavLink className={({ isActive }) => (isActive ? style.link+' '+style.link_active : style.link)} to='/rules'>Правила</NavLink></li>
+                    <li className={style.item}><NavLink className={({ isActive }) => (isActive ? style.link+' '+style.link_active : style.link)} to='/test'>Тест</NavLink></li>
                 </ul>
             </nav>
         </>

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import Search from '../Search/Search';
+import IPaddress from '../IPaddress/IPaddress';
 
 
 
@@ -33,13 +34,17 @@ export default function Header(){
             <div className={style.wrap__container}>
                 <Row className={style.wrap__row}>
                     <Col className={style.logo__wrap}>
-                        <img src='images/logo.png' alt="logo" className={style.logo}/>
+                        <NavLink to={'/'}>
+                            <img src='images/logo/logo.png' alt="logo" className={style.logo}/>
+                        </NavLink>
+                        
                     </Col>
                     <Col>
                         <Menu/>
                     </Col>
                     <Col>
-                        <Search/>
+                        <IPaddress/>
+                        {/* <Search/> */}
                     </Col>
                 </Row>
             </div>
