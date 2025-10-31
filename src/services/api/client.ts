@@ -1,8 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
 
 // Базовый URL нашего прокси-сервера
-const PROXY_BASE_URL = 'https://hm369631.webhm.pro/easydonate';
-
+let PROXY_BASE_URL = 'https://hm369631.webhm.pro/easydonate';
+PROXY_BASE_URL =  'http://localhost:5000/api';
 // Создаем экземпляр axios с базовыми настройками
 class ApiClient {
   private client: AxiosInstance;

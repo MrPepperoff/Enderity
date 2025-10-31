@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 @font-face{
   font-family: Minecraft;/* Гарнитура шрифта */
     src: url(fonts/minecraft-ten-font-cyrillic.ttf); /* Путь к файлу со шрифтом */
 }
     
-
+/* *{
+  border: 1px solid #a00;
+  box-sizing: border-box;
+} */
 :root{
   --c-bg-1: 28, 27, 28;
   --c-bg-2: 5, 5, 5;
@@ -15,7 +19,7 @@
 
   --c-white: 255, 255, 255;
   --c-pink: 252, 93, 217;
-  --c-yellow: 255, 217, 83, 1;
+  --c-yellow: 255, 217, 83;
   --c-yellow-shadow: 157,111,23;
 
   --f-Minecraft: "Minecraft", san-serif;
@@ -43,7 +47,9 @@ body {
   position: relative;
   
 }
-
+html body a{
+  color: rgb(var(--c-pink));
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

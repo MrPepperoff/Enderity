@@ -1,10 +1,11 @@
 import style from './Shop.module.sass';
-import { Col, Row, Spinner } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import coinIcon from './coin.svg';
 import searchIcon from './searchIcon.svg';
 import Default_layout from '../../layouts/Default/Default';
 import { useEffect, useState } from 'react';
 import { Product, productService } from '../../services';
+import Category from '../../UI/Category/Category';
 
 
 export default function Shop(){
@@ -22,7 +23,6 @@ export default function Shop(){
         
         setError('');
         
-        // console.log('🔄 Загружаем статистику серверов...');
         const productsData = await productService.getProductsByServer(115859);
         setProducts(productsData);
 
@@ -30,7 +30,7 @@ export default function Shop(){
         console.error('❌ Ошибка загрузки:', err);
         setError(err.message);
         } finally {
-        setTimeout(()=>{setLoading(false);}, 1500);
+            setLoading(false);
         
         }
     };
@@ -131,35 +131,9 @@ export default function Shop(){
                     <button type='button' className={style.search__btn}><img src={searchIcon} alt="search"/></button>
                 </div>
                 <div className={style.category}>
-                    <ul className={style.category__list}>
-                        <li><button type="button">Все</button></li>
-                        <li><button type="button">Броня</button></li>
-                        <li><button type="button">Блоки</button></li>
-                        <li><button type="button">Инструменты</button></li>
-                        <li><button type="button">Ранги</button></li>
-                    </ul>
+                    <Category/>
                 </div>
-                <Row className={style.wrap__row}>
-                    {products.map((coin)=>
-                        (coin.category_id != 92595)?
-                        <Col xs={2} key={coin.id} className={style.card__wrap}>
-                            <div className={style.card}>
-                                <div>
-                                    <img className={style.card__icon} src={coin.image} alt={`${coin.name}`}/>
-                                </div>
-                                <div className={style.card__count}>
-                                    <div>
-                                        {coin.name}
-                                    </div>
-                                    
-                                </div>
-                                <div className={style.card__price}>
-                                    {coin.price} &#8381;
-                                </div>
-                            </div>
-                        </Col>
-                    :'')}
-                </Row>
+                
         </Default_layout>
     );
 }
